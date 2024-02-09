@@ -1,9 +1,15 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 import authSlice from './auth/authSlice';
+import chatSlice from './chat/chatSlice';
+import leaderboardSlice from './leaderboard/leaderboardSlice';
+import navSlice from './nav/navSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authSlice,
+    chat: chatSlice,
+    leaderboard: leaderboardSlice,
+    nav: navSlice,
   },
 });
 
