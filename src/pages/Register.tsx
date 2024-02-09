@@ -1,4 +1,4 @@
-import AuthLayout from '@/components/layouts/AuthLayout';
+import AuthLayout from '@/layouts/AuthLayout';
 import { Link } from 'react-router-dom';
 
 const Register = () => {

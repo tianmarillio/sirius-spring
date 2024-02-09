@@ -1,12 +1,24 @@
-const GameSection = () => {
+import { FC } from 'react';
+import { twMerge } from 'tailwind-merge';
+
+interface GameSectionProps {
+  className?: string;
+}
+
+const GameSection: FC<GameSectionProps> = ({ className }) => {
   return (
-    <section className="h-screen overflow-scroll bg-green-100 pt-10">
-      <p className="mb-8 bg-blue-200 px-6 py-2 text-xl">
+    <section
+      className={twMerge(
+        'flex h-full flex-col overflow-scroll bg-green-100',
+        className,
+      )}
+    >
+      <p className="mb-8 flex-1 bg-blue-200 px-6 py-2 text-xl">
         Question: <br /> Lorem ipsum dolor, sit amet consectetur adipisicing
         elit. Porro perferendis quaerat assumenda!
       </p>
 
-      <ul className="flex flex-col justify-center gap-8 bg-red-200 px-6 text-lg">
+      <ul className="flex flex-1 flex-col justify-center gap-8 bg-red-200 px-6 text-lg">
         <li className="bg-blue-100">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
           voluptatum?

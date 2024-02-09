@@ -1,34 +1,30 @@
-const LeaderboardSection = () => {
+import { RootState } from '@/store';
+import { LeaderboardUser } from '@/store/leaderboard/leaderboardSlice';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { twMerge } from 'tailwind-merge';
+
+interface LeaderboardSectionProps {
+  className?: string;
+}
+
+const LeaderboardSection: FC<LeaderboardSectionProps> = ({ className }) => {
+  const leaderboardUsers = useSelector<RootState, LeaderboardUser[]>(
+    (state) => state.leaderboard.leaderboardUsers,
+  );
+
   return (
-    <section className="h-screen bg-blue-100 px-2 py-1">
+    <section className={twMerge('flex h-full flex-col bg-blue-500', className)}>
       <h2 className="h-12 bg-black text-white">LEADERBOARD</h2>
 
-      <ul className="flex flex-col gap-2 p-4">
-        <li className="grid grid-cols-12">
-          <p className="col-span-2 bg-red-200">1.</p>
-          <p className="col-span-5 bg-green-200">username</p>
-          <p className="col-span-5 bg-blue-200">point</p>
-        </li>
-        <li className="grid grid-cols-12">
-          <p className="col-span-2 bg-red-200">2.</p>
-          <p className="col-span-5 bg-green-200">username</p>
-          <p className="col-span-5 bg-blue-200">point</p>
-        </li>
-        <li className="grid grid-cols-12">
-          <p className="col-span-2 bg-red-200">3.</p>
-          <p className="col-span-5 bg-green-200">username</p>
-          <p className="col-span-5 bg-blue-200">point</p>
-        </li>
-        <li className="grid grid-cols-12">
-          <p className="col-span-2 bg-red-200">4.</p>
-          <p className="col-span-5 bg-green-200">username</p>
-          <p className="col-span-5 bg-blue-200">point</p>
-        </li>
-        <li className="grid grid-cols-12">
-          <p className="col-span-2 bg-red-200">5.</p>
-          <p className="col-span-5 bg-green-200">username</p>
-          <p className="col-span-5 bg-blue-200">point</p>
-        </li>
+      <ul className="flex flex-1 flex-col gap-2 overflow-scroll">
+        {leaderboardUsers.map((leaderboardUser, i) => (
+          <li key={i} className="grid grid-cols-12 bg-sky-200">
+            <p className="col-span-2 bg-red-200 px-1 py-2">1.</p>
+            <p className="col-span-6 px-1 py-2">{leaderboardUser.username}</p>
+            <p className="col-span-4 px-1 py-2">{leaderboardUser.point}</p>
+          </li>
+        ))}
       </ul>
     </section>
   );
